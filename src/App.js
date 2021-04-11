@@ -5,7 +5,7 @@ import EmpContainer from "./components/EmpContainer";
 function App() {
   return (
     <>
-      <h1>Hello World</h1>
+      <h1>Employee Directory</h1>
       <EmpContainer />
     </>
   )

@@ -1,36 +1,29 @@
 import React, { Component } from "react";
 import API from "../utils/API";
-import SearchForm from "./SearchForm";
+import List from "./List";
 
 class EmpContainer extends Component {
-  state= {
-    results: undefined,
+  state = {
+    results: [],
     search: ""
   };
 
-  // searchEmployee = () => {
-  //   API.random.random()
-  //     .then(res => this.setState({ results: res.results}))
-  //     .catch(err => console.log("----", err));
-  // }
-
   componentDidMount() {
     API()
-      .then(res => this.setState({ results: res.data.results}))
+      .then(res => this.setState({ results: res.data.results }))
       .catch(err => console.log("----", err));
   }
 
   render() {
     return (
-      <>
-        <h1>EmpContainer</h1>
-        {this.state.results !== undefined ? (
-          <h2>{this.state.results[0].name.first}</h2>
+      <div>
+        {this.state.results !== [] ? (
+          <List />
         ) : (
           <>
           </>
         )}
-      </>
+      </div>
     )
   }
 }
