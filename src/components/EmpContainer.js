@@ -6,35 +6,49 @@ import List from "./List";
 class EmpContainer extends Component {
   state = {
     results: [],
-    search: ""
+    search: "",
+    filtered: []
   };
 
   componentDidMount() {
     API()
       .then(res => this.setState({ results: res.data.results }))
-      .catch(err => console.log("----", err));
+      .catch(err => console.log(err));
   }
 
-  handleInputChange = event => {
-    const name = event.target.name;
-    const value = event.target.value;
+  handleInputChange = (e) => {
+    e.preventDefault();
+
+    const filterRes = this.state.results.filter(info => {
+      const newArr = [info.name.first, info.name.last]
+      return newArr.some(info => info.includes(e.target.value))
+    })
+
     this.setState({
-      [name]: value
-    });
+      filtered: filterRes,
+      search: e.target.value
+    })
+    console.log(filterRes)
   };
 
   render() {
     return (
       <>
         <SearchForm
-          results={this.search}
+          results={this.state.results}
           search={this.state.search}
-          handleInputChange={this.handleInputChange} />
-        {this.state.results !== [] ? (
-          <List results={this.state.results} />
-        ) : (
-          <>
-          </>
+          handleInputChange={this.handleInputChange} 
+        />
+        {this.state.filtered.length ? (
+          <List 
+          results={this.state.filtered}
+          handleInputChange={this.handleInputChange}
+          />
+          ) : (
+            <List
+            results={this.state.results}
+            handleInputChange={this.handleInputChange}
+          />
         )}
       </>
     )
