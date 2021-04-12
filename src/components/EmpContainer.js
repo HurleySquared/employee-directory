@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import API from "../utils/API";
+import SearchForm from "./SearchForm";
 import List from "./List";
 
 class EmpContainer extends Component {
@@ -14,16 +15,28 @@ class EmpContainer extends Component {
       .catch(err => console.log("----", err));
   }
 
+  handleInputChange = event => {
+    const name = event.target.name;
+    const value = event.target.value;
+    this.setState({
+      [name]: value
+    });
+  };
+
   render() {
     return (
-      <div>
+      <>
+        <SearchForm
+          results={this.search}
+          search={this.state.search}
+          handleInputChange={this.handleInputChange} />
         {this.state.results !== [] ? (
-          <List />
+          <List results={this.state.results} />
         ) : (
           <>
           </>
         )}
-      </div>
+      </>
     )
   }
 }

@@ -13,18 +13,18 @@ function List(props) {
               </tr>
             </thead>
             <tbody>
-              {props.results.map(info => (
-              <tr>
-                <th scope="row">info.picture.thumbnail</th>
-                <th>{info.name.first + " " + info.name.last}</th>
-                <td>{info.phone}</td>
-                <td>info.email</td>
-                <td>info.dob.date</td>
-              </tr>
-                ))};
+              {props.results.map(data => (
+                <tr key={data.dob.date}>
+                  <th scope="row"><img src={data.picture.thumbnail} alt="Employee Face"></img></th>
+                  <td>{data.name.first + " " + data.name.last}</td>
+                  <td>{data.phone}</td>
+                  <td>{data.email}</td>
+                  <td>{data.dob.date}</td>
+                </tr>
+              ))}
             </tbody>
           </table>
-  );
+  )
 }
 
 export default List;
