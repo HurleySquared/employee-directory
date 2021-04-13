@@ -7,7 +7,9 @@ class EmpContainer extends Component {
   state = {
     results: [],
     search: "",
-    filtered: []
+    filtered: [],
+    sortedRes: [],
+    order: false
   };
 
   componentDidMount() {
@@ -31,6 +33,36 @@ class EmpContainer extends Component {
     console.log(filterRes)
   };
 
+  sortedEmp = () => {
+    const sorted = this.state.results;
+    let up = 1;
+    let down = -1;
+    if (!this.state.order) {
+      up = 1;
+      down = -1
+    } else {
+      up = 1;
+      down = -1;
+    }
+    
+    
+    let sortedRes = sorted.sort((a, b) => {
+      if (a.sorted.name < b.sorted.name) {
+        return down;
+      }
+      if (a.sorted.name > b.sorted.name) {
+        return up;
+      }
+      return 0;
+    })
+    
+    this.setState({
+      sortEmp: sortedRes,
+      order: !this.state.order
+    })
+    console.log(sortedRes);
+    };
+
   render() {
     return (
       <>
@@ -43,11 +75,13 @@ class EmpContainer extends Component {
           <List 
           results={this.state.filtered}
           handleInputChange={this.handleInputChange}
+          onClick={this.sortedEmp}
           />
           ) : (
             <List
             results={this.state.results}
             handleInputChange={this.handleInputChange}
+            onClick={this.sortedEmp}
           />
         )}
       </>

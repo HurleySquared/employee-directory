@@ -1,5 +1,6 @@
 import React from "react";
 import EmpContainer from "./components/EmpContainer";
+import "./index.css"
 
 function App() {
   return (
