@@ -6,9 +6,9 @@ function List(props) {
             <thead>
               <tr>
                 <th scope="col">Image</th>
-                <th scope="col" style={{ cursor: "grabbing" }} onClick={props.sortedEmp}>Name</th>
+                <th scope="col">Name</th>
                 <th scope="col">Phone</th>
-                <th scope="col">E-mail</th>
+                <th scope="col" style={{ cursor: "grabbing" }} onClick={props.sortedEmp}>E-mail</th>
                 <th scope="col">DoB</th>
               </tr>
             </thead>

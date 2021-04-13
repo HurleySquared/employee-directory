@@ -47,10 +47,10 @@ class EmpContainer extends Component {
     
     
     let sortedRes = sorted.sort((a, b) => {
-      if (a.sorted.name < b.sorted.name) {
+      if (a.email < b.email) {
         return down;
       }
-      if (a.sorted.name > b.sorted.name) {
+      if (a.email > b.email) {
         return up;
       }
       return 0;
